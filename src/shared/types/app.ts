@@ -6,7 +6,7 @@ export interface AppState {
 }
 
 export interface Block {
-  id: string;
+  id: number;
   type: 'text' | 'image' | 'input' | 'selectbox';
   order: number;
   content: string;

@@ -9,9 +9,9 @@ const AddBlock: React.FC = () => {
   );
   const { guestMode } = useContext(AppContext);
   const [showModal, setShowModal] = useState(false);
-  const [isTypeSelected, setIsTypeSelected] = useState<
-    boolean | string
-  >(false);
+  const [typeSelected, setTypeSelected] = useState<boolean | string>(
+    false
+  );
   const parentRef = useRef(null);
 
   useEffect(() => {
@@ -19,15 +19,10 @@ const AddBlock: React.FC = () => {
       event: React.MouseEvent<HTMLDivElement>
     ) => {
       // Check if the clicked element is a child of the parent
-
       const clickedDiv = event.target as HTMLDivElement;
       const clickedDivAttr = clickedDiv.getAttribute('data-value');
       if (parentRef.current && !!clickedDivAttr) {
-        setIsTypeSelected(clickedDivAttr);
-        console.log(
-          'Clicked on a child element:',
-          (event.target as HTMLElement).textContent
-        );
+        setTypeSelected(clickedDivAttr);
       }
     };
 
@@ -48,7 +43,7 @@ const AddBlock: React.FC = () => {
 
   const handleCloseModal = () => {
     setShowModal(!showModal);
-    setIsTypeSelected(false);
+    setTypeSelected(false);
   };
   return (
     <div>
@@ -67,11 +62,11 @@ const AddBlock: React.FC = () => {
           </div>
           {showModal && (
             <div className="w-full h-full bg-gray-700 bg-opacity-30 fixed top-0 left-0 flex justify-center items-center">
-              <div className="w-3/4 h-auto bg-white mx-auto my-32 rounded-md p-8  overflow-hidden">
+              <div className="w-1/2 h-auto bg-white mx-auto my-32 rounded-md p-8  overflow-hidden">
                 <div style={{ width: '200%' }}>
                   <div
                     className={clsx(
-                      isTypeSelected && '-translate-x-110',
+                      typeSelected && '-translate-x-110',
                       'transition-all duration-200 grid grid-cols-2 gap-8'
                     )}
                   >
@@ -95,13 +90,16 @@ const AddBlock: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-4 gap-4 w-50 ml-4">
-                      <div onClick={() => setIsTypeSelected(false)}>
-                        Back
+                    <div className=" w-50 ml-4">
+                      <div
+                        onClick={() => setTypeSelected(false)}
+                        className="bg-gray-400 hover:bg-gray-500 w-24 rounded-full p-4 text-white h-6 flex justify-center items-center cursor-pointer"
+                      >
+                        {'< Back'}
                       </div>
                       <BlockForm
                         closeModal={handleCloseModal}
-                        type={isTypeSelected}
+                        type={typeSelected}
                       />
                     </div>
                   </div>

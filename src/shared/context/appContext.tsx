@@ -15,7 +15,7 @@ const AppContext = createContext<AppState>({
 
 const initialBlocks: Block[] = [
   {
-    id: '1',
+    id: 1,
     type: 'text',
     order: 1,
     content: 'This is a text block',
