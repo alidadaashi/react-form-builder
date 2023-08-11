@@ -2,13 +2,17 @@ import AppContext from '@/shared/context/appContext';
 import { useContext } from 'react';
 
 const Preview: React.FC = () => {
-  const { blocks } = useContext(AppContext);
+  const { blocks, guestMode } = useContext(AppContext);
   return (
-    <div className="bg-white w-3/4 mx-auto p-4 rounded-md">
-      <h1 className="font-bold text-2xl">Preview</h1>
-      {blocks.map((block) => (
-        <div key={block.id}>{block.content}</div>
-      ))}
+    <div className=" w-3/4 mx-auto">
+      <h1 className="font-bold text-2xl mb-4">
+        {guestMode ? 'Preview' : 'Edit'}
+      </h1>
+      <div className="bg-white p-4 rounded-md">
+        {blocks.map((block) => (
+          <div key={block.id}>{block.content}</div>
+        ))}
+      </div>
     </div>
   );
 };
