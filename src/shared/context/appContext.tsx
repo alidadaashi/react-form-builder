@@ -10,6 +10,7 @@ const AppContext = createContext<AppState>({
   guestMode: true,
   setMode: () => {},
   blocks: [],
+  setBlocks: () => {},
 });
 
 const initialBlocks: Block[] = [
@@ -41,7 +42,7 @@ export const AppProvider = ({
 
   return (
     <AppContext.Provider
-      value={{ guestMode: mode, setMode, blocks: blocks }}
+      value={{ guestMode: mode, setMode, blocks: blocks, setBlocks }}
     >
       {children}
     </AppContext.Provider>
