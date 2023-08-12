@@ -28,7 +28,7 @@ const TextBlockForm: React.FC<TextBlockFormProps> = ({
     const { name, value } = e.target;
     setBlockState((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: name === 'order' ? parseInt(value) : value,
     }));
   };
   return (

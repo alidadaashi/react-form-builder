@@ -6,7 +6,7 @@ const BlockForm = ({
   type,
   closeModal,
 }: {
-  type: string;
+  type: string | boolean;
   closeModal: () => void;
 }) => {
   const { handleBlocks, blocks } = useContext(AppContext);
@@ -21,7 +21,10 @@ const BlockForm = ({
       return;
     } else {
       setShowError(false);
-      handleBlocks([...blocks, blockData]);
+      console.log(blocks);
+      blocks.splice(blockData.order - 1, 0, blockData);
+      console.log(blocks);
+      handleBlocks([...blocks]);
       closeModal();
     }
   };
