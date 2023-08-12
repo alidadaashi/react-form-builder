@@ -1,12 +1,12 @@
 import { Block } from '@/shared/types/app';
 import { use, useEffect, useState } from 'react';
 
-interface TextBlockFormProps {
+interface ImageBlockFormProps {
   blocksCount: number;
   blockData: (block: Block) => void;
 }
 
-const TextBlockForm: React.FC<TextBlockFormProps> = ({
+const ImageBlockForm: React.FC<ImageBlockFormProps> = ({
   blockData,
   blocksCount,
 }) => {
@@ -15,7 +15,7 @@ const TextBlockForm: React.FC<TextBlockFormProps> = ({
     setBlockState({
       order: blocksCount + 1,
       id: Math.floor(Math.random() * 1000000),
-      type: 'text',
+      type: 'image',
       content: '',
     });
   }, []);
@@ -34,15 +34,19 @@ const TextBlockForm: React.FC<TextBlockFormProps> = ({
   return (
     <div className="flex flex-col my-4">
       <h6 className="text-2xl text-gray-700 font-semibold ">
-        Please type your text below.
+        Please enter the URL of image.
       </h6>
       <form className="flex flex-col">
-        <textarea
-          onChange={handleChange}
+        <label htmlFor="label"> Image URL:</label>
+        <input
+          type="text"
           name="content"
-          className="border-solid border-gray-400 border-2 h-24 rounded-md mt-4 p-2 mb-8"
-        ></textarea>
-        <label htmlFor="order"> Order</label>
+          className="border-solid border-gray-400 border-2 rounded-md mt-4 p-2 mb-8"
+          placeholder="please just type a URL"
+          onChange={handleChange}
+        />
+
+        <label htmlFor="order">Order</label>
         <input
           type="number"
           name="order"
@@ -58,4 +62,4 @@ const TextBlockForm: React.FC<TextBlockFormProps> = ({
   );
 };
 
-export default TextBlockForm;
+export default ImageBlockForm;

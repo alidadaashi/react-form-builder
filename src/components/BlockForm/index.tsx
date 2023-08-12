@@ -2,6 +2,8 @@ import AppContext from '@/shared/context/appContext';
 import { Block } from '@/shared/types/app';
 import { useContext, useState } from 'react';
 import TextBlockForm from './TextBlockForm';
+import InputBlockForm from './InputBlockForm';
+import ImageBlockForm from './ImageBlockForm';
 const BlockForm = ({
   type,
   closeModal,
@@ -36,7 +38,18 @@ const BlockForm = ({
           blocksCount={blocks.length}
         />
       )}
-      {type === 'image' && <input type="file" />}
+      {type === 'image' && (
+        <ImageBlockForm
+          blockData={handleChange}
+          blocksCount={blocks.length}
+        />
+      )}
+      {type === 'input-text' && (
+        <InputBlockForm
+          blockData={handleChange}
+          blocksCount={blocks.length}
+        />
+      )}
       <button
         className="bg-green-600 px-6 py-2 text-white rounded-full "
         onClick={handleClick}

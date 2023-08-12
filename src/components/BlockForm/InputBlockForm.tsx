@@ -1,12 +1,12 @@
 import { Block } from '@/shared/types/app';
 import { use, useEffect, useState } from 'react';
 
-interface TextBlockFormProps {
+interface InputBlockFormProps {
   blocksCount: number;
   blockData: (block: Block) => void;
 }
 
-const TextBlockForm: React.FC<TextBlockFormProps> = ({
+const InputBlockForm: React.FC<InputBlockFormProps> = ({
   blockData,
   blocksCount,
 }) => {
@@ -15,7 +15,7 @@ const TextBlockForm: React.FC<TextBlockFormProps> = ({
     setBlockState({
       order: blocksCount + 1,
       id: Math.floor(Math.random() * 1000000),
-      type: 'text',
+      type: 'input',
       content: '',
     });
   }, []);
@@ -34,22 +34,26 @@ const TextBlockForm: React.FC<TextBlockFormProps> = ({
   return (
     <div className="flex flex-col my-4">
       <h6 className="text-2xl text-gray-700 font-semibold ">
-        Please type your text below.
+        Please enter the details of input.
       </h6>
       <form className="flex flex-col">
-        <textarea
-          onChange={handleChange}
+        <label htmlFor="label"> Label</label>
+        <input
+          type="text"
           name="content"
-          className="border-solid border-gray-400 border-2 h-24 rounded-md mt-4 p-2 mb-8"
-        ></textarea>
-        <label htmlFor="order"> Order</label>
+          className="border-solid border-gray-400 border-2 rounded-md mt-4 p-2 mb-8"
+          placeholder="please just type a label"
+          onChange={handleChange}
+        />
+
+        <label htmlFor="order">Order</label>
         <input
           type="number"
           name="order"
           className="border-solid border-gray-400 border-2 rounded-md mt-4 p-2"
           placeholder="please just type a number"
           onChange={handleChange}
-          defaultValue={blockState.order}
+          value={blockState.order}
           min={1}
           max={blocksCount + 1}
         />
@@ -58,4 +62,4 @@ const TextBlockForm: React.FC<TextBlockFormProps> = ({
   );
 };
 
-export default TextBlockForm;
+export default InputBlockForm;
