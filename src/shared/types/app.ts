@@ -2,7 +2,7 @@ export interface AppState {
   guestMode: boolean;
   setMode: (guestMode: boolean) => void;
   blocks: Block[];
-  setBlocks: (blocks: Block[]) => void;
+  handleBlocks: (blocks: Block[]) => void;
 }
 
 export interface Block {

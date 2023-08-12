@@ -1,16 +1,10 @@
-import {
-  ReactNode,
-  createContext,
-  use,
-  useEffect,
-  useState,
-} from 'react';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 import { AppState, Block } from '../types/app';
 const AppContext = createContext<AppState>({
   guestMode: true,
   setMode: () => {},
   blocks: [],
-  setBlocks: () => {},
+  handleBlocks: () => {},
 });
 
 const initialBlocks: Block[] = [
@@ -29,10 +23,11 @@ export const AppProvider = ({
   const [mode, setMode] = useState<AppState['guestMode']>(true);
   const [blocks, setBlocks] =
     useState<AppState['blocks']>(initialBlocks);
+  const handleBlocks = (blocks: Block[]) => setBlocks(blocks);
   // Set blocks from localStorage
   useEffect(() => {
     localStorage.setItem('blocks', JSON.stringify(initialBlocks));
-    setBlocks(initialBlocks);
+    handleBlocks(initialBlocks);
   }, []);
 
   // Sync blocks with localStorage
@@ -42,7 +37,12 @@ export const AppProvider = ({
 
   return (
     <AppContext.Provider
-      value={{ guestMode: mode, setMode, blocks: blocks, setBlocks }}
+      value={{
+        guestMode: mode,
+        setMode,
+        blocks: blocks,
+        handleBlocks,
+      }}
     >
       {children}
     </AppContext.Provider>

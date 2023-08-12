@@ -14,7 +14,7 @@ const TextBlockForm: React.FC<TextBlockFormProps> = ({
   useEffect(() => {
     setBlockState({
       order: blocksCount + 1,
-      id: blocksCount + 1,
+      id: Math.floor(Math.random() * 1000000),
       type: 'text',
       content: '',
     });

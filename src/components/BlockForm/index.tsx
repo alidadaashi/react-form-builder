@@ -9,7 +9,7 @@ const BlockForm = ({
   type: string;
   closeModal: () => void;
 }) => {
-  const { setBlocks, blocks } = useContext(AppContext);
+  const { handleBlocks, blocks } = useContext(AppContext);
   const [blockData, setBlockData] = useState({} as Block);
   const [showError, setShowError] = useState(false);
   const handleChange = (currentBlock: Block) => {
@@ -21,7 +21,7 @@ const BlockForm = ({
       return;
     } else {
       setShowError(false);
-      setBlocks([...blocks, blockData]);
+      handleBlocks([...blocks, blockData]);
       closeModal();
     }
   };

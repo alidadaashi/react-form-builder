@@ -3,7 +3,12 @@ import clsx from 'clsx';
 import { useContext } from 'react';
 
 const Header: React.FC = () => {
-  const { guestMode, setMode, blocks } = useContext(AppContext);
+  const { guestMode, setMode, blocks, handleBlocks } =
+    useContext(AppContext);
+  const deleteblock = (id: number) => () => {
+    const newBlocks = blocks.filter((block) => block.id !== id);
+    handleBlocks(newBlocks);
+  };
   return (
     <header className="flex justify-between w-full items-center">
       <div className="block-container w-10/12">
@@ -11,10 +16,18 @@ const Header: React.FC = () => {
           {blocks.length > 0 &&
             blocks.map((block) => (
               <div
-                className="bg-white rounded-md p-2 min-w-auto w-72 truncate"
+                className="bg-white rounded-md p-2 min-w-auto group w-72 truncate relative"
                 key={block.id}
               >
                 {block.content}
+                {!guestMode && (
+                  <button
+                    onClick={deleteblock(block.id)}
+                    className="bg-red-600 hover:bg-red-700 text-white w-6 h-6 flex items-center justify-center rounded-full absolute top-0 bottom-0 my-auto right-2 hidden group-hover:block"
+                  >
+                    <span className="-mt-1 block">x</span>
+                  </button>
+                )}
               </div>
             ))}
         </div>
