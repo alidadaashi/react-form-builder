@@ -27,6 +27,22 @@ body {
 }
 
 .-translate-x-110 {
-  --tw-translate-x: -51%;
+  --tw-translate-x: -53%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+
+/* Hide scrollbar by default */
+::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: rgba(var(--gray-800), 0.1);
+}
+
+/* Make scrollbar visible when needed */
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+}
+
+/* Make scrollbar track visible when needed */
+/* ::-webkit-scrollbar-track {
+  display: none;
+} */

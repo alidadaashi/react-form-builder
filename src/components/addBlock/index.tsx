@@ -62,8 +62,11 @@ const AddBlock: React.FC = () => {
           </div>
           {showModal && (
             <div className="z-20 w-full h-full bg-gray-700 bg-opacity-30 fixed top-0 left-0 flex justify-center items-center">
-              <div className="w-1/2 h-auto bg-white mx-auto my-32 rounded-md p-8  overflow-hidden">
-                <div style={{ width: '200%' }}>
+              <div className="w-10/12 lg:w-1/2 h-auto bg-white mx-auto my-32 rounded-md overflow-hidden">
+                <div
+                  style={{ width: '200%' }}
+                  className="py-4 px-2 lg:py-8 lg:px-8"
+                >
                   <div
                     className={clsx(
                       typeSelected && '-translate-x-110',
@@ -76,7 +79,7 @@ const AddBlock: React.FC = () => {
                       </h5>
                       <div
                         ref={parentRef}
-                        className="grid grid-cols-4 gap-8 w-50"
+                        className="grid grid-cols-1 lg:grid-cols-4 gap-8 w-50"
                       >
                         {fieldTypes.map((field) => (
                           <div

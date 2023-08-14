@@ -5,11 +5,11 @@ import Image from 'next/image';
 const Preview: React.FC = () => {
   const { blocks, guestMode } = useContext(AppContext);
   return (
-    <div className=" w-3/4 mx-auto">
+    <div className=" w-full lg:w-3/4 mx-auto">
       <h1 className="font-bold text-2xl mb-4">
         {guestMode ? 'Preview' : 'Edit'}
       </h1>
-      <div className="bg-white p-6 rounded-md flex flex-col gap-8 block-list">
+      <div className="bg-white p-6 rounded-md flex flex-col gap-2 lg:gap-8 block-list">
         {blocks.map((block) => {
           switch (block.type) {
             case 'text':
@@ -33,7 +33,7 @@ const Preview: React.FC = () => {
                     {block.content}
                   </label>
                   <input
-                    className="border-solid border-gray-400 border-2 rounded-md mt-4 p-2 mb-8"
+                    className="border-solid border-gray-400 border-2 rounded-md mt-4 p-2 mb-2 lg:mb-8"
                     type="text"
                     name="input"
                   />
