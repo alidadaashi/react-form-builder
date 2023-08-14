@@ -28,7 +28,7 @@ const Header: React.FC = () => {
                 {!guestMode && (
                   <button
                     onClick={deleteblock(block.id)}
-                    className="bg-red-600 hover:bg-red-700 text-white w-6 h-6 flex items-center justify-center rounded-full absolute top-0 bottom-0 my-auto right-2 hidden group-hover:block"
+                    className="bg-red-600 hover:bg-red-700 text-white w-6 h-6 items-center justify-center rounded-full absolute top-0 bottom-0 my-auto right-2 hidden group-hover:block"
                   >
                     <span className="-mt-1 block">x</span>
                   </button>
