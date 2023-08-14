@@ -1,6 +1,6 @@
 import AppContext from '@/shared/context/appContext';
 import { Block } from '@/shared/types/app';
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import TextBlockForm from './TextBlockForm';
 import InputBlockForm from './InputBlockForm';
 import ImageBlockForm from './ImageBlockForm';
@@ -14,9 +14,9 @@ const BlockForm = ({
   const { handleBlocks, blocks } = useContext(AppContext);
   const [blockData, setBlockData] = useState({} as Block);
   const [showError, setShowError] = useState(false);
-  const handleChange = (currentBlock: Block) => {
-    setBlockData(currentBlock);
-  };
+  const handleChange = useCallback((block: Block) => {
+    setBlockData(block);
+  }, []);
   const handleClick = () => {
     if (!blockData.order || blockData.content === '') {
       setShowError(true);
