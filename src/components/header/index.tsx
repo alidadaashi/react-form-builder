@@ -1,6 +1,6 @@
 import AppContext from '@/shared/context/appContext';
 import clsx from 'clsx';
-import { useContext } from 'react';
+import { use, useCallback, useContext } from 'react';
 
 const Header: React.FC = () => {
   const { guestMode, setMode, blocks, handleBlocks } =
@@ -9,6 +9,23 @@ const Header: React.FC = () => {
     const newBlocks = blocks.filter((block) => block.id !== id);
     handleBlocks(newBlocks);
   };
+  // highlight the block that is clicked by data-order attribute
+  const highlightBlock = useCallback((order: number) => {
+    const blockList = document.querySelectorAll('.block-list > *');
+    blockList.forEach((block) => {
+      if (block.getAttribute('data-order') === order.toString()) {
+        block.classList.add('bg-gray-200', 'shadow-md');
+        // scroll to the block
+        block.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'center',
+        });
+      } else {
+        block.classList.remove('bg-gray-200', 'shadow-md');
+      }
+    });
+  }, []);
   return (
     <header
       className={clsx(
@@ -21,7 +38,9 @@ const Header: React.FC = () => {
           {blocks.length > 0 &&
             blocks.map((block) => (
               <div
-                className="bg-white rounded-md p-2 min-w-auto group w-72 truncate relative"
+                data-order={block.order}
+                className="bg-white rounded-md p-2 min-w-auto group w-72 truncate relative cursor-pointer"
+                onClick={() => highlightBlock(block.order)}
                 key={block.id}
               >
                 {block.content}

@@ -9,18 +9,26 @@ const Preview: React.FC = () => {
       <h1 className="font-bold text-2xl mb-4">
         {guestMode ? 'Preview' : 'Edit'}
       </h1>
-      <div className="bg-white p-6 rounded-md flex flex-col gap-8">
+      <div className="bg-white p-6 rounded-md flex flex-col gap-8 block-list">
         {blocks.map((block) => {
           switch (block.type) {
             case 'text':
               return (
-                <div className="font-medium text-xl" key={block.id}>
+                <div
+                  className="font-medium text-xl p-2 rounded-md transition-all duration-100"
+                  key={block.id}
+                  data-order={block.order}
+                >
                   {block.content}
                 </div>
               );
             case 'input':
               return (
-                <div key={block.id}>
+                <div
+                  key={block.id}
+                  data-order={block.order}
+                  className="p-2 rounded-md transition-all duration-100"
+                >
                   <label htmlFor="input" className="-mb-2 block">
                     {block.content}
                   </label>
@@ -33,7 +41,11 @@ const Preview: React.FC = () => {
               );
             case 'image':
               return (
-                <div key={block.id}>
+                <div
+                  key={block.id}
+                  data-order={block.order}
+                  className="p-2 rounded-md transition-all duration-100"
+                >
                   <Image
                     className="w-full rounded-lg"
                     alt=""
