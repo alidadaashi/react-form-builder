@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { AppState, Block } from '../types/app';
 const AppContext = createContext<AppState>({
   guestMode: true,
@@ -29,10 +35,23 @@ export const AppProvider = ({
   const [mode, setMode] = useState<AppState['guestMode']>(true);
   const [blocks, setBlocks] =
     useState<AppState['blocks']>(initialBlocks);
-  const handleBlocks = (blocks: Block[]) => setBlocks(blocks);
+  const handleBlocks = (blocks: Block[]) => {
+    const orderedBlocks = correctOrderNumbers(blocks);
+    setBlocks(orderedBlocks);
+  };
   useEffect(() => {
     localStorage.setItem('blocks', JSON.stringify(blocks));
   }, [blocks]);
+
+  const correctOrderNumbers = useCallback((blocks: Block[]) => {
+    const orderedBlocks = blocks.map((block, index) => {
+      return {
+        ...block,
+        order: index + 1,
+      };
+    });
+    return orderedBlocks;
+  }, []);
 
   return (
     <AppContext.Provider
