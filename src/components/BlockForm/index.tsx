@@ -23,9 +23,7 @@ const BlockForm = ({
       return;
     } else {
       setShowError(false);
-      console.log(blocks);
       blocks.splice(blockData.order - 1, 0, blockData);
-      console.log(blocks);
       handleBlocks([...blocks]);
       closeModal();
     }
