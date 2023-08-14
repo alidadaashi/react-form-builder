@@ -10,7 +10,12 @@ const Header: React.FC = () => {
     handleBlocks(newBlocks);
   };
   return (
-    <header className="flex justify-between w-full items-center">
+    <header
+      className={clsx(
+        'flex justify-between items-center py-8 border-b-2 border-b-gray-400 mb-8 w-full sticky top-0  z-10',
+        guestMode ? 'bg-gray-300' : 'bg-gray-200'
+      )}
+    >
       <div className="block-container w-10/12">
         <div className="flex gap-3 ">
           {blocks.length > 0 &&

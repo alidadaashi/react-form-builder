@@ -53,7 +53,7 @@ const AddBlock: React.FC = () => {
             <button
               onClick={handleCloseModal}
               className={clsx(
-                'z-10 fixed right-8 bottom-8 transition-all rounded-full bg-green-700 hover:bg-green-800 w-12 h-12 text-white font-medium text-4xl flex justify-center items-center',
+                'z-30 fixed right-8 bottom-8 transition-all rounded-full bg-green-700 hover:bg-green-800 w-12 h-12 text-white font-medium text-4xl flex justify-center items-center',
                 showModal && 'bg-red-700 hover:bg-red-800 rotate-45 '
               )}
             >
@@ -61,7 +61,7 @@ const AddBlock: React.FC = () => {
             </button>
           </div>
           {showModal && (
-            <div className="w-full h-full bg-gray-700 bg-opacity-30 fixed top-0 left-0 flex justify-center items-center">
+            <div className="z-20 w-full h-full bg-gray-700 bg-opacity-30 fixed top-0 left-0 flex justify-center items-center">
               <div className="w-1/2 h-auto bg-white mx-auto my-32 rounded-md p-8  overflow-hidden">
                 <div style={{ width: '200%' }}>
                   <div

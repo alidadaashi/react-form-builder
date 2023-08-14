@@ -41,7 +41,7 @@ const InputBlockForm: React.FC<InputBlockFormProps> = ({
         <input
           type="text"
           name="content"
-          className="border-solid border-gray-400 border-2 rounded-md mt-4 p-2 mb-8"
+          className="border-solid border-gray-400 border-2 rounded-md mt-4 p-2"
           placeholder="please just type a label"
           onChange={handleChange}
         />
