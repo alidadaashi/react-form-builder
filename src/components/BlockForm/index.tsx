@@ -21,6 +21,14 @@ const BlockForm = ({
     if (!blockData.order || blockData.content === '') {
       setShowError(true);
       return;
+    }
+    // make sure it is a url
+    else if (
+      type === 'image' &&
+      !blockData.content.match(/(http(s?):)([/|.|\w|\s|-])*/g)
+    ) {
+      setShowError(true);
+      return;
     } else {
       setShowError(false);
       blocks.splice(blockData.order - 1, 0, blockData);
