@@ -53,7 +53,7 @@ const InputBlockForm: React.FC<InputBlockFormProps> = ({
           className="border-solid border-gray-400 border-2 rounded-md mt-4 p-2"
           placeholder="please just type a number"
           onChange={handleChange}
-          value={blockState.order}
+          defaultValue={blockState.order}
           min={1}
           max={blocksCount + 1}
         />
